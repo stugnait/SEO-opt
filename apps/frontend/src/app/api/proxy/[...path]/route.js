@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const BACKEND_URL = "http://seo-opt.railway.internal/api";
+const BACKEND_URL = "https://seo-opt.railway.internal/api";
 
 export async function GET(req, context) {
     return handleProxy(req, context);

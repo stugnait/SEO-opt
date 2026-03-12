@@ -1,0 +1,13 @@
+{
+  "name": "it-blog",
+  "private": true,
+  "scripts": {
+    "dev:backend": "cd apps/backend && npm install && npm run dev",
+    "dev:frontend": "cd apps/frontend && npm install && npm run dev",
+    "dev": "npm run dev:backend",
+    "dev:all": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

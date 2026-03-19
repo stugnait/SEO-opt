@@ -1,3 +1,8 @@
+
+app.get("/ping", (req, res) => {
+    res.json({ status: "Server is ALIVE!" });
+});
+
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";

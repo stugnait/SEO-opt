@@ -7,8 +7,6 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-dotenv.config({ path: path.resolve(__dirname, '../../../../../.env') });
-
 import { pool } from "../config/db.js";
 
 import { setupSwagger } from "./swagger.js";

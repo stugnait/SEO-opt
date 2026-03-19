@@ -5,14 +5,22 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 async function getArticles(page = 1, limit = 10) {
-    const res = await fetch(`/proxy/articles?page=${page}&limit=${limit}`);
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://seo-opt-production.up.railway.app";
+
+    // Стукаємо напряму на бекенд
+    const res = await fetch(`${baseUrl}/api/articles?page=${page}&limit=${limit}`);
+
     if (!res.ok) throw new Error("Failed to load articles");
     return res.json();
 }
 
 async function getArticleTags(slug) {
     try {
-        const res = await fetch(`/proxy/articles/${encodeURIComponent(slug)}`);
+        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://seo-opt-production.up.railway.app";
+
+        // Беремо теги напряму з бекенду
+        const res = await fetch(`${baseUrl}/api/articles/${encodeURIComponent(slug)}`);
+
         if (!res.ok) return [];
         const data = await res.json();
         return data.tags || [];
@@ -20,7 +28,6 @@ async function getArticleTags(slug) {
         return [];
     }
 }
-
 function slugify(text) {
     return text
         ?.toLowerCase()

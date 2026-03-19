@@ -27,7 +27,7 @@ export default function LoginPage() {
             const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://seo-opt-production.up.railway.app";
 
             // Стукаємо на правильний URL
-            const res = await fetch(`${baseUrl}/api/auth/login`, {
+            const res = await fetch(`${baseUrl}/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

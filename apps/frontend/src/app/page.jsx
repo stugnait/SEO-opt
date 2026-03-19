@@ -8,7 +8,7 @@ async function getArticles(page = 1, limit = 10) {
     const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://seo-opt-production.up.railway.app";
 
     // Стукаємо напряму на бекенд
-    const res = await fetch(`${baseUrl}/api/articles?page=${page}&limit=${limit}`);
+    const res = await fetch(`${baseUrl}/articles?page=${page}&limit=${limit}`);
 
     if (!res.ok) throw new Error("Failed to load articles");
     return res.json();
@@ -19,7 +19,7 @@ async function getArticleTags(slug) {
         const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://seo-opt-production.up.railway.app";
 
         // Беремо теги напряму з бекенду
-        const res = await fetch(`${baseUrl}/api/articles/${encodeURIComponent(slug)}`);
+        const res = await fetch(`${baseUrl}/articles/${encodeURIComponent(slug)}`);
 
         if (!res.ok) return [];
         const data = await res.json();

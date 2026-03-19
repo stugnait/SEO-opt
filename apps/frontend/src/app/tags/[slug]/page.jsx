@@ -8,7 +8,7 @@ async function getArticleFull(slug){
 
     try{
 
-        const res = await fetch(`/proxy/articles/${encodeURIComponent(slug)}`);
+        const res = await fetch(`/api/proxy/articles/${encodeURIComponent(slug)}`);
 
         if(!res.ok) return null;
 

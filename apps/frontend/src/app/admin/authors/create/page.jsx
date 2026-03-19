@@ -54,7 +54,7 @@ export default function CreateAuthor() {
                 formData.append("file", file);
             }
 
-            const res = await fetch("/api/proxy/admin/users", {
+            const res = await fetch("/proxy/admin/users", {
 
                 method: "POST",
 

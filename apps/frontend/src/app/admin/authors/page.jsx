@@ -32,7 +32,7 @@ export default function AdminAuthors() {
 
         try {
 
-            const res = await fetch("/api/proxy/admin/users", {
+            const res = await fetch("/proxy/admin/users", {
                 headers: {
                     Authorization: `Bearer ${getToken()}`
                 }

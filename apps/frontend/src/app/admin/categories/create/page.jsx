@@ -32,7 +32,7 @@ export default function CreateCategory() {
 
             setLoading(true);
 
-            await fetch("/api/proxy/admin/categories", {
+            await fetch("/proxy/admin/categories", {
 
                 method: "POST",
 

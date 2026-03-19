@@ -25,7 +25,7 @@ export default function AdminTags() {
 
         try {
 
-            const res = await fetch("/api/proxy/admin/tags", {
+            const res = await fetch("/proxy/admin/tags", {
                 headers: {
                     Authorization: `Bearer ${getToken()}`
                 }

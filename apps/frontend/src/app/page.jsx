@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 async function getArticles(page = 1, limit = 10) {
-    const res = await fetch(`/api/proxy/articles?page=${page}&limit=${limit}`);
+    const res = await fetch(`/proxy/articles?page=${page}&limit=${limit}`);
     if (!res.ok) throw new Error("Failed to load articles");
     return res.json();
 }
 
 async function getArticleTags(slug) {
     try {
-        const res = await fetch(`/api/proxy/articles/${encodeURIComponent(slug)}`);
+        const res = await fetch(`/proxy/articles/${encodeURIComponent(slug)}`);
         if (!res.ok) return [];
         const data = await res.json();
         return data.tags || [];

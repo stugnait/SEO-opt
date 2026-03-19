@@ -38,7 +38,7 @@ export default function AdminArticles() {
 
         try{
 
-            const res = await fetch("/api/proxy/admin/articles",{
+            const res = await fetch("/proxy/admin/articles",{
                 headers:{Authorization:`Bearer ${token()}`}
             });
 

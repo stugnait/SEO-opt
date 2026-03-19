@@ -1,7 +1,5 @@
 
-app.get("/ping", (req, res) => {
-    res.json({ status: "Server is ALIVE!" });
-});
+
 
 import express from "express";
 import cors from "cors";
@@ -26,6 +24,10 @@ import searchRouter from "./routes/search.js";
 
 
 const app = express();
+
+app.get("/ping", (req, res) => {
+    res.json({ status: "Server is ALIVE!" });
+});
 
 console.log("Password from ENV:", process.env.DB_PASSWORD);
 

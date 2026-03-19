@@ -16,15 +16,18 @@ export default function LoginPage() {
         e.preventDefault();
 
         if (!email || !password) {
-            alert("Введіть username і password");
+            alert("Введіть email і password");
             return;
         }
 
         setLoading(true);
 
         try {
+            // Беремо публічну адресу бекенду
+            const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://seo-opt-production.up.railway.app";
 
-            const res = await fetch("http://seo-opt.railway.internal/api/auth/login", {
+            // Стукаємо на правильний URL
+            const res = await fetch(`${baseUrl}/api/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

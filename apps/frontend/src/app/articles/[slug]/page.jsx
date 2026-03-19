@@ -1,9 +1,11 @@
 import Link from "next/link";
 
 async function getArticleBySlug(slug) {
+    // Беремо адресу бекенду з Railway
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://seo-opt-production.up.railway.app";
 
     const res = await fetch(
-        `http://localhost:3000/api/proxy/articles/${slug}`,
+        `${baseUrl}/api/articles/${slug}`, // Стукаємо прямо на бекенд
         {
             method: "GET",
             cache: "no-store"

@@ -5,7 +5,7 @@ async function getArticleBySlug(slug) {
     const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://seo-opt-production.up.railway.app";
 
     const res = await fetch(
-        `${baseUrl}/api/articles/${slug}`, // Стукаємо прямо на бекенд
+        `${baseUrl}/articles/${slug}`, // Стукаємо прямо на бекенд
         {
             method: "GET",
             cache: "no-store"

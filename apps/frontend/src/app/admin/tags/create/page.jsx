@@ -31,7 +31,7 @@ export default function CreateTag() {
 
             setLoading(true);
 
-            await fetch("/proxy/admin/tags", {
+            await fetch("/api/proxy/admin/tags", {
 
                 method: "POST",
 

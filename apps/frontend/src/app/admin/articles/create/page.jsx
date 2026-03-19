@@ -64,10 +64,10 @@ export default function CreateArticle() {
 
             const [authorsRes,categoriesRes,tagsRes,imagesRes] = await Promise.all([
 
-                fetch("/proxy/admin/users",{headers:{Authorization:`Bearer ${t}`}}),
-                fetch("/proxy/admin/categories",{headers:{Authorization:`Bearer ${t}`}}),
-                fetch("/proxy/admin/tags",{headers:{Authorization:`Bearer ${t}`}}),
-                fetch("/images")
+                fetch("/api/proxy/admin/users",{headers:{Authorization:`Bearer ${t}`}}),
+                fetch("/api/proxy/admin/categories",{headers:{Authorization:`Bearer ${t}`}}),
+                fetch("/api/proxy/admin/tags",{headers:{Authorization:`Bearer ${t}`}}),
+                fetch("/api/images")
 
             ]);
 

@@ -23,7 +23,7 @@ export default function AdminCategories() {
 
         try {
 
-            const res = await fetch("/proxy/admin/categories", {
+            const res = await fetch("/api/proxy/admin/categories", {
                 headers: {
                     Authorization: `Bearer ${getToken()}`
                 }

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_API_BASE_URL
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export async function GET(req, context) {
     return handleProxy(req, context);
@@ -34,15 +34,17 @@ async function handleProxy(req, context) {
         headers.delete("host");
         headers.delete("content-length");
 
+        // 🔥 ФІКС ТУТ
         const body =
             req.method === "GET" || req.method === "DELETE"
                 ? undefined
-                : await req.text();
+                : req.body; // ✅ було req.text()
 
         const res = await fetch(backendUrl, {
             method: req.method,
             headers,
             body,
+            duplex: "half",
         });
 
         const text = await res.text();
@@ -53,6 +55,7 @@ async function handleProxy(req, context) {
                 "Content-Type": res.headers.get("Content-Type") || "application/json",
             },
         });
+
     } catch (err) {
         return NextResponse.json(
             { error: err instanceof Error ? err.message : "Proxy error" },

@@ -98,41 +98,6 @@ export default function HomePage() {
     return (
         <div className="min-h-screen text-white bg-[radial-gradient(circle_at_top,#1a1a1f,#0b0b0d)]">
 
-            {/* NAVBAR */}
-
-            <header className="sticky top-0 z-50 backdrop-blur-xl bg-black/40 border-b border-zinc-800">
-
-                <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-5">
-
-                    <h1
-                        onClick={() => router.push("/")}
-                        className="text-3xl font-bold cursor-pointer bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-pulse"
-                    >
-                        IT Blog
-                    </h1>
-
-                    <div className="flex gap-3">
-
-                        <button
-                            onClick={goAdmin}
-                            className="px-4 py-2 bg-zinc-800 rounded-lg hover:bg-zinc-700 transition"
-                        >
-                            Admin
-                        </button>
-
-                        <button
-                            onClick={logout}
-                            className="px-4 py-2 bg-red-600 rounded-lg hover:bg-red-700 transition"
-                        >
-                            Logout
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </header>
-
             {/* HERO */}
 
             <section className="max-w-7xl mx-auto px-6 pt-20 pb-12">

@@ -20,18 +20,25 @@ export default function AdminAuthors() {
     const dialogRef = useRef(null);
 
     function getToken() {
-
         return document.cookie
             .split("; ")
             .find(r => r.startsWith("token="))
             ?.split("=")[1];
+    }
 
+    // 🔥 FIX ДЛЯ КАРТИНОК
+    function getImage(url) {
+        if (!url) return null;
+
+        if (url.startsWith("http")) return url;
+
+        if (url.startsWith("/images")) return url;
+
+        return `http://localhost:5000${url}`;
     }
 
     async function loadAuthors() {
-
         try {
-
             const res = await fetch("/api/proxy/admin/users", {
                 headers: {
                     Authorization: `Bearer ${getToken()}`
@@ -44,27 +51,20 @@ export default function AdminAuthors() {
         } catch (err) {
             console.error(err);
         }
-
     }
 
     function openDeleteModal(id) {
-
         setDeleteId(id);
         dialogRef.current?.showModal();
-
     }
 
     function closeModal() {
-
         dialogRef.current?.close();
         setDeleteId(null);
-
     }
 
     async function confirmDelete() {
-
         try {
-
             setDeleteLoading(true);
 
             await fetch(`/api/proxy/admin/users/${deleteId}`, {
@@ -78,15 +78,10 @@ export default function AdminAuthors() {
             loadAuthors();
 
         } catch (err) {
-
             console.error(err);
-
         } finally {
-
             setDeleteLoading(false);
-
         }
-
     }
 
     useEffect(() => {
@@ -102,32 +97,24 @@ export default function AdminAuthors() {
             <div className="flex justify-between items-center mb-12">
 
                 <h1 className="text-4xl font-bold flex items-center gap-3 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-
                     <User size={26} />
-
                     Автори
-
                 </h1>
 
                 <Link
                     href="/admin/authors/create"
                     className="flex items-center gap-2 bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg transition shadow-lg"
                 >
-
                     <Plus size={18} />
-
                     Створити автора
-
                 </Link>
 
             </div>
 
             {authors.length === 0 && (
-
                 <div className="text-zinc-500 text-lg">
                     Немає авторів
                 </div>
-
             )}
 
             {/* GRID */}
@@ -146,17 +133,15 @@ export default function AdminAuthors() {
                         {author.avatar_url ? (
 
                             <img
-                                src={author.avatar_url}
+                                src={getImage(author.avatar_url)}
                                 alt={author.name}
-                                className="w-20 h-20 rounded-full object-cover mb-4 border border-zinc-700"
+                                className="w-24 h-24 rounded-full object-cover mb-4 border-2 border-blue-500 shadow-lg transition group-hover:scale-105"
                             />
 
                         ) : (
 
-                            <div className="w-20 h-20 rounded-full bg-zinc-800 flex items-center justify-center mb-4">
-
+                            <div className="w-24 h-24 rounded-full bg-zinc-800 flex items-center justify-center mb-4 text-xl">
                                 <User size={28} />
-
                             </div>
 
                         )}
@@ -164,9 +149,7 @@ export default function AdminAuthors() {
                         {/* NAME */}
 
                         <h2 className="text-xl font-semibold mb-1 group-hover:text-blue-400 transition">
-
                             {author.name || "Немає імені"}
-
                         </h2>
 
                         {/* EMAIL */}
@@ -184,15 +167,10 @@ export default function AdminAuthors() {
                         {/* ADMIN BADGE */}
 
                         {author.is_admin && (
-
                             <div className="flex items-center gap-1 text-xs text-white bg-blue-600 px-2 py-1 rounded w-fit mb-4">
-
                                 <Shield size={14} />
-
                                 Admin
-
                             </div>
-
                         )}
 
                         {/* ACTIONS */}
@@ -203,22 +181,16 @@ export default function AdminAuthors() {
                                 href={`/admin/authors/edit/${author.id}`}
                                 className="flex items-center justify-center gap-2 flex-1 bg-blue-600 hover:bg-blue-700 py-2 rounded-lg transition"
                             >
-
                                 <Pencil size={16} />
-
                                 Редагувати
-
                             </Link>
 
                             <button
                                 onClick={() => openDeleteModal(author.id)}
                                 className="flex items-center justify-center gap-2 flex-1 bg-red-600 hover:bg-red-700 py-2 rounded-lg transition"
                             >
-
                                 <Trash2 size={16} />
-
                                 Видалити
-
                             </button>
 
                         </div>
@@ -260,11 +232,8 @@ export default function AdminAuthors() {
                             disabled={deleteLoading}
                             className="flex items-center gap-2 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg"
                         >
-
                             <Trash2 size={16} />
-
                             {deleteLoading ? "Видалення..." : "Видалити"}
-
                         </button>
 
                     </div>
@@ -276,5 +245,4 @@ export default function AdminAuthors() {
         </div>
 
     );
-
 }

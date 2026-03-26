@@ -14,19 +14,19 @@ async function getArticleBySlug(slug) {
     return res.json();
 }
 
-// 🔥 УНІВЕРСАЛЬНИЙ helper (працює з public/images і бекендом)
 function getImage(url) {
     if (!url) return null;
 
-    // вже повний URL
     if (url.startsWith("http")) return url;
-
-    // якщо з public/images (Next.js)
     if (url.startsWith("/images")) return url;
 
-    // якщо з бекенду (uploads і т.д.)
-    return `http://localhost:5000${url}`;
+    const backendBase =
+        (process.env.NEXT_PUBLIC_API_BASE_URL || "https://seo-opt-production.up.railway.app")
+            .replace(/\/api$/, "");
+
+    return `${backendBase}${url}`;
 }
+
 
 export default async function ArticlePage({ params }) {
 

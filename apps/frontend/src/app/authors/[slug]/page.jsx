@@ -19,10 +19,13 @@ function getImage(url) {
     if (!url) return null;
 
     if (url.startsWith("http")) return url;
-
     if (url.startsWith("/images")) return url;
 
-    return `http://localhost:5000${url}`;
+    const backendBase =
+        (process.env.NEXT_PUBLIC_API_BASE_URL || "https://seo-opt-production.up.railway.app")
+            .replace(/\/api$/, "");
+
+    return `${backendBase}${url}`;
 }
 
 // 🔥 SLUG HELPER

@@ -8,7 +8,7 @@ yarn-error.log
 dist/
 
 # Env
-.env
+apps/backend/.env
 
 # IDE
 .idea/
